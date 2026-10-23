@@ -11,8 +11,8 @@
         </activity>
         <activity android:name=".MainActivity" android:exported="false"
             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="fullsensor" />
+            android:screenOrientation="landscape" />
         <activity android:name=".DetailActivity" android:exported="false"
-            android:screenOrientation="fullsensor" />
+            android:screenOrientation="landscape" />
     </application>
 </manifest>
