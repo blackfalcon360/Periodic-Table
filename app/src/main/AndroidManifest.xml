@@ -2,24 +2,27 @@
     <application android:allowBackup="true" android:supportsRtl="true"
         android:icon="@drawable/ic_launcher" android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        
-        <!-- Splash screen locked to portrait -->
         <activity android:name=".SplashActivity" android:exported="true"
-            android:theme="@style/SplashTheme" android:screenOrientation="portrait">
+            android:theme="@style/SplashTheme" android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- MainActivity rotates freely in all 4 directions using fullSensor -->
         <activity android:name=".MainActivity" android:exported="false"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="fullSensor" />
-
-        <!-- DetailActivity locked to landscape -->
         <activity android:name=".DetailActivity" android:exported="false"
-            android:screenOrientation="landscape" />
-            
+            android:screenOrientation="fullSensor" />
     </application>
 </manifest>
+```[cite: 2]
+
+---
+
+## MainActivity.java Ke Mut متعلقہ Maloomat
+
+Aapke `MainActivity.java`[cite: 1] code mein layouts pehle se hi dynamic tareeqay se (`MATCH_PARENT`, `WRAP_CONTENT` aur weight `1f` ke sath) banaye gaye hain[cite: 1]:
+
+* Is wajah se Java code mein mazeed koi tabdeeli karne ki zarurat nahi hai. 
+* Jab aap phone ko rotate karenge, toh table, list, quiz aur settings ke views apni jagah par barkarar rehte hue khud ko landscape mode ke mutabiq automatically adjust kar lenge.
