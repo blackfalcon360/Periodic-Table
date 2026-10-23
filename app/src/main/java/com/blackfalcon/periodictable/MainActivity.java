@@ -124,7 +124,6 @@ public class MainActivity extends Activity {
         e.setPadding(dp(14), dp(9), dp(14), dp(9));
         e.setSingleLine(true);
         e.setInputType(InputType.TYPE_CLASS_TEXT);
-        e.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
         return e;
     }
 
@@ -242,13 +241,15 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams mp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mp.setMargins(dp(7), 0, dp(7), dp(4));
-        pane.addView(hscroll(modes), mp);
+        HorizontalScrollView modesScroll = hscroll(modes);
+        pane.addView(modesScroll, mp);
 
         legendBox = new LinearLayout(this);
         LinearLayout.LayoutParams lgp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lgp.setMargins(dp(7), 0, dp(7), dp(4));
-        pane.addView(hscroll(legendBox), lgp);
+        HorizontalScrollView legendScroll = hscroll(legendBox);
+        pane.addView(legendScroll, lgp);
 
         table = new TableView(this);
         table.setTheme(st.dark());
@@ -269,10 +270,22 @@ public class MainActivity extends Activity {
         pane.addView(table, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
+        View.OnFocusChangeListener searchFocusListener = (v, hasFocus) -> {
+            boolean active = hasFocus || etSearch.getText().length() > 0;
+            modesScroll.setVisibility(active ? View.GONE : View.VISIBLE);
+            legendScroll.setVisibility(active ? View.GONE : View.VISIBLE);
+        };
+        etSearch.setOnFocusChangeListener(searchFocusListener);
+
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int a, int b, int c) { }
             @Override public void onTextChanged(CharSequence s, int a, int b, int c) { }
-            @Override public void afterTextChanged(Editable e) { applyFilter(); }
+            @Override public void afterTextChanged(Editable e) {
+                boolean active = etSearch.hasFocus() || e.length() > 0;
+                modesScroll.setVisibility(active ? View.GONE : View.VISIBLE);
+                legendScroll.setVisibility(active ? View.GONE : View.VISIBLE);
+                applyFilter();
+            }
         });
         buildLegend();
         return pane;
@@ -383,10 +396,20 @@ public class MainActivity extends Activity {
         lv.setOnItemClickListener((parent, view, pos, id) -> openElement(shown.get(pos)));
         pane.addView(lv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
+        View.OnFocusChangeListener listFocusListener = (v, hasFocus) -> {
+            boolean active = hasFocus || etList.getText().length() > 0;
+            sortRow.setVisibility(active ? View.GONE : View.VISIBLE);
+        };
+        etList.setOnFocusChangeListener(listFocusListener);
+
         etList.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int a, int b, int c) { }
             @Override public void onTextChanged(CharSequence s, int a, int b, int c) { }
-            @Override public void afterTextChanged(Editable e) { refreshList(); }
+            @Override public void afterTextChanged(Editable e) {
+                boolean active = etList.hasFocus() || e.length() > 0;
+                sortRow.setVisibility(active ? View.GONE : View.VISIBLE);
+                refreshList();
+            }
         });
         refreshList();
         return pane;
