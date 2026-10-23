@@ -18,11 +18,5 @@
 </manifest>
 ```[cite: 2]
 
----
-
-## MainActivity.java Ke Mut متعلقہ Maloomat
-
-Aapke `MainActivity.java`[cite: 1] code mein layouts pehle se hi dynamic tareeqay se (`MATCH_PARENT`, `WRAP_CONTENT` aur weight `1f` ke sath) banaye gaye hain[cite: 1]:
-
-* Is wajah se Java code mein mazeed koi tabdeeli karne ki zarurat nahi hai. 
-* Jab aap phone ko rotate karenge, toh table, list, quiz aur settings ke views apni jagah par barkarar rehte hue khud ko landscape mode ke mutabiq automatically adjust kar lenge.
+### Aik Ahem Tip:
+Agar aap Android Studio mein kaam kar rahe hain, toh code paste karne ke baad keyboard shortcuts (`Ctrl + Alt + L` Windows par ya `Cmd + Option + L` Mac par) press kar ke file ko auto-format zaroor kar liya karein, taake indentation bilkul theek ho jaye aur mazeed koi parsing error na aaye.
