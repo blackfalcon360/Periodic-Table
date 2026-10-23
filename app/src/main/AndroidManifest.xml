@@ -14,7 +14,7 @@
 
         <!-- MainActivity rotates freely in all 4 directions using fullSensor -->
         <activity android:name=".MainActivity" android:exported="false"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="fullSensor" />
 
         <!-- DetailActivity locked to landscape -->
