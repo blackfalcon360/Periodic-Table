@@ -124,6 +124,7 @@ public class MainActivity extends Activity {
         e.setPadding(dp(14), dp(9), dp(14), dp(9));
         e.setSingleLine(true);
         e.setInputType(InputType.TYPE_CLASS_TEXT);
+        e.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
         return e;
     }
 
