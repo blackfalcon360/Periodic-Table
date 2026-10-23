@@ -16,7 +16,3 @@
             android:screenOrientation="fullSensor" />
     </application>
 </manifest>
-```[cite: 2]
-
-### Aik Ahem Tip:
-Agar aap Android Studio mein kaam kar rahe hain, toh code paste karne ke baad keyboard shortcuts (`Ctrl + Alt + L` Windows par ya `Cmd + Option + L` Mac par) press kar ke file ko auto-format zaroor kar liya karein, taake indentation bilkul theek ho jaye aur mazeed koi parsing error na aaye.
